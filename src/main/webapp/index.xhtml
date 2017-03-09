@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+
+    
+	<h:form id="frmCalcular">
+
+		<p:growl id="grMensajes" showDetail="true" showSummary="true"
+			life="3000"></p:growl>
+		<p:panel id="pnDataInput" header="CALCULADORA FITNESS">
+
+			<p:panelGrid columns="4">
+				<p:outputLabel for="txtPeso" value="Peso:"></p:outputLabel>
+				<p:inputNumber id="txtPeso" required="true" value="#{progresoBean.progreso.peso}"
+					requiredMessage="Digite el peso" decimalPlaces="0">
+				</p:inputNumber>
+
+				<p:outputLabel for="txtEstatura" value="Estatura:"></p:outputLabel>
+				<p:inputNumber id="txtEstatura" required="true" value="#{progresoBean.progreso.estatura}"
+					requiredMessage="Digite la estatura" decimalPlaces="0">
+				</p:inputNumber>
+
+				<p:outputLabel for="txtCintura" value="Cintura:"></p:outputLabel>
+				<p:inputNumber id="txtCintura" required="true" value="#{progresoBean.progreso.cintura}"
+					requiredMessage="Digite la Cintura" decimalPlaces="0">
+				</p:inputNumber>
+
+				<p:outputLabel for="txtCuello" value="Cuello:"></p:outputLabel>
+				<p:inputNumber id="txtCuello" required="true" value="#{progresoBean.progreso.cuello}"
+					requiredMessage="Digite el cuello" decimalPlaces="0">
+				</p:inputNumber>
+
+				<p:outputLabel for="txtCadera" value="Cadera (Mujer):"></p:outputLabel>
+				<p:inputNumber id="txtCadera" required="true" 
+					requiredMessage="Digite el cuello" placeholder="Solo para mujer"
+					value="#{progresoBean.progreso.cadera}" decimalPlaces="0" >
+				</p:inputNumber>
+				<p:commandButton id="btnCalcular" value="Calcular" actionListener="#{progresoBean.calcular()}"
+				update="grMensajes ,pnResultado" ></p:commandButton>
+
+			</p:panelGrid >
+			
+
+		</p:panel>
+
+		<p:panel id="pnResultado" header="VALORACION">
+		
+		<p:panelGrid columns="3">
+		<p:outputLabel  value="Tu IMC es: #{progresoBean.progreso.imc} kg"></p:outputLabel>
+		<p:outputLabel  value="Estado: #{progresoBean.progreso.estado}"></p:outputLabel>
+		<p:outputLabel  value="Indice de cintura: #{progresoBean.progreso.idxCintura}"></p:outputLabel>
+		<p:outputLabel  value="Grasa corporal: #{progresoBean.progreso.grasaCorporal}%"></p:outputLabel>
+		<p:outputLabel  value="Masa corporal magra: #{progresoBean.progreso.grasaCorporalMagra} kg"></p:outputLabel>
+		<p:commandButton id="btnGuardar" value="Guardar" actionListener="#{progresoBean.guardar()}"
+				update="grMensajes" ></p:commandButton>
+		
+		</p:panelGrid>
+
+		</p:panel>
+
+	</h:form>
+</h:body>
+</html>
